@@ -1,0 +1,82 @@
+header {
+  padding: 10px;
+  background: #7682a8;
+  border-bottom: 4px solid #010100; 
+  position: fixed; 
+  width: 100%;
+  top: 0;
+  z-index: 1000; 
+  font-family: 'Press Start 2P', cursive;  
+}
+
+.nav-container {
+  width: 100%;
+  margin-left: 0;   
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;        
+}
+
+.logo-container {  
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  width: 70px;
+}
+
+.logo-text {
+  margin-left: 20px; 
+  font-size: 1.5rem;
+  color: #BCD0D6; 
+  white-space: nowrap;
+}
+
+.logo:hover {
+  cursor: pointer;   
+}
+
+.logo-text:hover{
+  color: #ffffff;
+}
+.menu ul {
+  padding: 0;
+  margin: 0;
+}
+
+.menu ul li {
+  list-style-type: none;
+  color: #BCD0D6; 
+  display: inline-block;
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+.menu ul li:hover {
+  font-size: 19px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #ffffff; 
+  transition: 0.3s ease-in-out;
+}
+
+.menu-item {
+  display: inline-block;
+  padding: 5px 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  border-radius: 50px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+}
+
+#btnRegistro:hover{
+  background-color: #CB4343;
+}
+
+#btnLogin:hover{
+  background-color: #CF913A; 
+}

@@ -1,0 +1,16 @@
+{
+  "hosting": {
+    "public": "dist/tp1-labo4-suarez-brian-alan/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

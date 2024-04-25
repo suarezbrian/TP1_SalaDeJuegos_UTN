@@ -1,0 +1,41 @@
+.home-container {
+  display: flex;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.panel-container {
+  padding: 20px;
+  background-color: #aab0c2;
+  border-bottom: 4px solid #010100;
+  color: #ffffff;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding-top: 110px;
+  flex-grow: 1;
+  padding-left: calc(15% + 20px);
+}
+
+.home-title {
+  font-size: 2rem;
+  margin-bottom: 10px;  
+}
+
+.home-description {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.home-button {
+  padding: 10px 20px;
+  background-color: #354E7A;
+  border: none;
+  color: #BCD0D6;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.home-button:hover {
+  background-color: #637ba5;
+}

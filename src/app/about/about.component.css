@@ -1,0 +1,84 @@
+.about-container {
+    font-family: 'Press Start 2P', cursive;
+    display: flex;
+    align-items: center;    
+    background-color: #aab0c2;
+    border-bottom: 4px solid #010100;
+    height: 100vh;
+    color: #ffffff;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding-top: 110px;
+    padding-left: calc(15% + 30px);
+}
+
+.about-content {
+    width: 50%; 
+}
+
+.about-title {
+    font-size: 3.3rem;
+    margin-bottom: 30px;
+}
+
+.about-text {
+    font-size: 1.2rem;
+    margin-bottom: 20px;   
+}
+
+.about-image {
+    width: 20%; 
+}
+
+.rounded-image {
+    border-radius: 20%; 
+    width:100%; 
+    border: 6px solid #ffffff; 
+}
+
+.about-redes {
+    width: 18%; 
+    margin-top: 20px;
+    font-size: 1.3rem;
+    padding-left: 20px;
+}
+
+.about-redes ul {
+    list-style: none; 
+    padding: 0; 
+}
+
+.about-redes ul li {
+    margin-bottom: 10px; 
+}
+
+.about-redes ul li a {
+    text-decoration: none; 
+    color: #ffffff; 
+    display: flex; 
+    align-items: center; 
+    transition: font-size 0.3s; 
+}
+
+.about-redes ul li a:hover {
+    font-size: 1.8rem; 
+}
+
+.social-icon {
+    width: 44px;
+    height: 44px;
+    margin-right: 10px;
+}
+
+.divider {
+    width: 2px; 
+    height: 60%; 
+    background-color: #ffffff; 
+    margin: 0 50px; 
+}
+
+.avatar{
+    width: 25%;
+    border-radius: 100%;
+    padding-right: 100px;
+}

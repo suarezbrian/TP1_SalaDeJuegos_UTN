@@ -1,0 +1,82 @@
+
+.login-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9998;     
+}
+
+.login-form {
+    position: fixed; 
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;     
+    height: 40%;
+    background-color: #5E6D91;    
+    padding: 20px;
+    border-radius: 10px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.login-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-form {
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 1rem;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.login-button {
+    padding: 10px 20px;
+    background-color: #354E7A;
+    border: none;
+    color: #BCD0D6;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #637ba5;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #BCD0D6;
+}
+
+.autoCompletar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}

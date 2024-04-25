@@ -1,0 +1,20 @@
+<header #headerElement>
+    <div class="custom-container">
+        <div class="nav-container">     
+            <div routerLink='home' class="logo">
+                <img src="../../assets/logo.png" class="logo" alt="">
+                <span class="logo-text">Sala de Juegos</span>
+            </div> 
+            
+            <div class="menu">
+                <ul>
+                    <li (click)="openLoginPopup()" id="btnLogin" class="menu-item">Entrar</li>
+                    <li (click)="openRegistroPopup()" id="btnRegistro" class="menu-item">Registro</li>
+                </ul>
+            </div> 
+        </div>
+    </div>    
+</header>
+
+<app-login *ngIf="mostrarLoginPopup"></app-login>
+<app-registro *ngIf="mostrarRegistroPopup"></app-registro>

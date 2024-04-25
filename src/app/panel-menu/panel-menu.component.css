@@ -1,0 +1,36 @@
+.panel-menu-container {
+  font-family: 'Press Start 2P', cursive;
+  background-color: rgba(96, 109, 144, 0.8);
+  width: 15%;
+  padding: 20px;
+  box-sizing: border-box;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black;
+  position: fixed;
+  z-index: 1000; 
+  bottom: 0;
+  overflow-y: auto;
+  top: 94px
+}
+
+.menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.menu li {
+  border-bottom: 1px solid #000;
+}
+
+.menu li a {
+  display: block;
+  padding: 10px 20px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.menu li a:hover {
+  background-color: #354E7A;
+}
