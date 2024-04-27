@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit{
     }
   }
 
-  Entrar() {
+  entrar() {
 
     this.banderaError = false;
     this.msjError = "";
