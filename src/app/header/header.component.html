@@ -8,8 +8,14 @@
             
             <div class="menu">
                 <ul>
-                    <li (click)="openLoginPopup()" id="btnLogin" class="menu-item">Entrar</li>
-                    <li (click)="openRegistroPopup()" id="btnRegistro" class="menu-item">Registro</li>
+                    <ng-container *ngIf="!estaLogeado; else loggedInMenu">
+                        <li (click)="openLoginPopup()" id="btnLogin" class="menu-item">Entrar</li>
+                        <li (click)="openRegistroPopup()" id="btnRegistro" class="menu-item">Registro</li>
+                    </ng-container>
+                    <ng-template #loggedInMenu>
+                        <li>{{ nombreUsuario }}</li>
+                        <li (click)="cerrarSesion()" id="btnSalir" class="menu-item">Cerrar</li>
+                    </ng-template>
                 </ul>
             </div> 
         </div>

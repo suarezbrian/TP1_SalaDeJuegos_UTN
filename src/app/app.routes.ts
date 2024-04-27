@@ -13,23 +13,15 @@ export const routes: Routes = [
     },
     {
         path: 'home',
-        component: HomeComponent
-    },
-    {
-        path: 'login',
-        component: LoginComponent
-    },
-    {
-        path: 'registro',
-        component: RegistroComponent
+        loadComponent:()=> import('./home/home.component').then(c => c.HomeComponent)
     },
     {
         path: 'about',
-        component: AboutComponent
+        loadComponent:()=> import('./about/about.component').then(c => c.AboutComponent)
     },
     {
         path: 'error',
-        component: ErrorComponent
+        loadComponent:()=> import('./error/error.component').then(c => c.ErrorComponent)
     },
     {
         path: '**', 

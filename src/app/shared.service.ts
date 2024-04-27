@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Usuario } from './interfaces/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,31 @@ export class SharedService {
     return this._formAbierto.getValue();
   }
 
-  set formAbierto(value: boolean) {
-    this._formAbierto.next(value);
+  set formAbierto(valor: boolean) {
+    this._formAbierto.next(valor);
+  }
+
+  private _estaLogeado: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  estaLogeado$ = this._estaLogeado.asObservable();
+
+  get estaLogeado(): boolean {
+    return this._estaLogeado.getValue();
+  }
+
+  set estaLogeado(valor: boolean) {
+    this._estaLogeado.next(valor);
+  }
+
+  // USUARIO
+  private _usuarioLogeado: BehaviorSubject<Usuario | null> = new BehaviorSubject<Usuario | null>(null);
+  usuarioLogeado$ = this._usuarioLogeado.asObservable();
+
+  get usuarioLogeado(): Usuario | null {
+    return this._usuarioLogeado.getValue();
+  }
+
+  set usuarioLogeado(usuario: Usuario | null) {
+    this._usuarioLogeado.next(usuario);
   }
 
 }
