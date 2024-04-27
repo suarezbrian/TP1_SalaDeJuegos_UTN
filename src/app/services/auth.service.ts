@@ -55,7 +55,8 @@ export class AuthService {
 
         this.logsService.guardarLogs(logData, "logins");
         this.msjSucces = "Bienvenido, " + usuarioEncontrado?.usuario;
-        this.alertService.mostrarAlerta(true, this.msjSucces, 1000);       
+        this.alertService.mostrarAlerta(true, this.msjSucces, 1000);  
+        localStorage.setItem('usuarioLogeado', JSON.stringify(usuarioEncontrado));     
         this.router.navigate(['/home']);
       }
     }).catch((e) => {        
@@ -130,6 +131,7 @@ export class AuthService {
     this.sharedService.estaLogeado = false;
     this.auth.signOut().then(() => {
       this.msjSucces = "Sesión cerrada exitosamente."
+      localStorage.removeItem('usuarioLogeado');
       this.alertService.mostrarAlerta(true,this.msjSucces, 1500);
       this.router.navigate(['/home']);  
     }).catch((error) => {
