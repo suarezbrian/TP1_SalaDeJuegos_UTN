@@ -3,9 +3,9 @@ import { RouterLink } from '@angular/router';
 import { SharedService } from '../shared.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
-import { Firestore, addDoc, collection } from '@angular/fire/firestore';
-import Swal from 'sweetalert2'
+import { AuthService } from '../services/auth.service';
+import { LogsService } from '../services/logs.service';
+import { AlertsService } from '../services/alerts.service';
 
 @Component({
   selector: 'app-registro',
@@ -26,7 +26,12 @@ export class RegistroComponent implements OnInit{
   msjError: string = "";
   msjSucces: string = "";
 
-  constructor(private sharedService: SharedService, private auth: Auth, private firestore: Firestore) { }
+  constructor(
+    private sharedService: SharedService, 
+    private authService: AuthService,
+    private logsService: LogsService,
+    private alertService: AlertsService
+    ) { }
 
   ngOnInit() {
     this.sharedService.formAbierto$.subscribe(estaAbierto => {
@@ -61,51 +66,11 @@ export class RegistroComponent implements OnInit{
     }
 
     if (this.banderaError) {
-      this.mostrarAlerta(false, this.msjError, 2000); 
+      this.alertService.mostrarAlerta(false, this.msjError, 2000); 
+      this.logsService.guardarErrorLogs(this.msjError, "registro");
     }else{
-      createUserWithEmailAndPassword(this.auth, this.correoElectronico, this.password).then((respuesta) => {
-        if (respuesta.user.email !== null){ 
-          
-          this.msjSucces = "Registro Exitoso, " + this.nombreUsuario;
-          let usuariosCollection = collection(this.firestore, 'usuarios');
-          addDoc(usuariosCollection, {"usuario": this.nombreUsuario, "email": this.correoElectronico, "fecha_registro": new Date(), "rol": 1});
-
-          let registroCollection = collection(this.firestore, 'registros');
-          addDoc(registroCollection, { fecha: new Date(), "usuario": this.correoElectronico});
-
-          this.banderaError = false;    
-          this.mostrarAlerta(true, this.msjSucces, 3000);    
-          this.cerrarRegistroForm();
-        }
-
-      }).catch((e) => {
-
-        let errorCollection = collection(this.firestore, 'errores');
-        addDoc(errorCollection, { fecha: new Date(), "error": e.code, "tipo": "registro"});
-
-        console.log(e);
-        this.banderaError = true;     
-       
-        switch (e.code) {
-          case "auth/invalid-email":
-            this.msjError = "Error, email inválido";
-            break;
-          case "auth/email-already-in-use":
-            this.msjError = "Error, email ya está en uso";
-            break;
-          case "auth/missing-password":
-            this.msjError = "Error, contraseña inválida";
-            break;
-          case "auth/weak-password":
-            this.msjError = "Error, contraseña débil";
-            break;
-          default:
-            this.msjError = "Error en el registro"
-            break;
-        }
-
-        this.mostrarAlerta(false, this.msjError, 2000);        
-      });  
+      this.authService.registro(this.correoElectronico, this.password, this.nombreUsuario);
+      this.cerrarRegistroForm();       
     }   
     
   }
@@ -126,29 +91,5 @@ export class RegistroComponent implements OnInit{
       this.confirmarPassword = '';
       this.nombreUsuario = '';
     }
-  }
-
-  configuracionAlerta(tipo: boolean, mensaje: string, duracion: number) {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: "top-end",
-      showConfirmButton: false,
-      timer: duracion,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.onmouseenter = Swal.stopTimer;
-        toast.onmouseleave = Swal.resumeTimer;
-      }
-    });  
-    Toast.fire({
-      icon: tipo ? "success": "error",
-      title: mensaje,
-    });
-  }
-  
-  
-  mostrarAlerta(tipo: boolean, mensaje: string, duracion:number) {
-    this.configuracionAlerta(tipo, mensaje, duracion);
-  }
-  
+  }  
 }
