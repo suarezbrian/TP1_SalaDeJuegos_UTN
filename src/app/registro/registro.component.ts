@@ -34,7 +34,7 @@ export class RegistroComponent implements OnInit{
     ) { }
 
   ngOnInit() {
-    this.sharedService.formAbierto$.subscribe(estaAbierto => {
+    this.sharedService.formRegistroAbierto$.subscribe(estaAbierto => {
       this.registroFormAbierto = estaAbierto;
     });
   }
@@ -76,7 +76,7 @@ export class RegistroComponent implements OnInit{
   }
 
   cerrarRegistroForm(){
-    this.sharedService.formAbierto = false;
+    this.sharedService.formRegistroAbierto = false;
   }
 
   autoCompletarCampos(){

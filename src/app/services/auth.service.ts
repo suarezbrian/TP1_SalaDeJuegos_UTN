@@ -86,15 +86,18 @@ export class AuthService {
           rol: 1, 
           usuario: usuario
         };
-        this.usuarioService.saveUserData(usuarioData);
+        this.usuarioService.guardarUsuario(usuarioData);
 
         const logData = {       
-          usuario: usuario,
+          usuario: email,
           fecha: new Date(),
         };
-        this.logsService.guardarLogs(logData, "registros");
-  
-        this.alertService.mostrarAlerta(true, this.msjSucces, 3000);  
+        this.logsService.guardarLogs(logData, "registros"); 
+         
+        this.alertService.mostrarAlerta(true, this.msjSucces, 1500);  
+        this.router.navigate(['/home']);
+
+        this.entrar(email,password);
       }
 
 

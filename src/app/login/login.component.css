@@ -20,6 +20,7 @@
     padding: 20px;
     border-radius: 10px;
     font-family: 'Press Start 2P', cursive;
+    border: 5px solid;
 }
 
 .login-title {
@@ -87,3 +88,13 @@ input[type="password"] {
     justify-content: center;
     margin: 20px;
 }
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Ajusta la opacidad según sea necesario */
+    z-index: 999; /* Asegúrate de que esté por encima del contenido */
+  }

@@ -48,7 +48,7 @@ export class UsuarioService {
     return usuariosSubject.asObservable(); 
   }
 
-  saveUserData(usuarioData: Usuario) {
+  guardarUsuario(usuarioData: Usuario) {
     try {
       const usuariosCollection = collection(this.firestore, 'usuarios');
       addDoc(usuariosCollection, usuarioData);

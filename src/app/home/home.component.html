@@ -1,8 +1,92 @@
 <div class="home-container">
     <app-panel-menu></app-panel-menu>
-    <div class="panel-container">
+    <div class="panel-container" [ngClass]="{'logged-in': estaLogeado}">
         <h1 class="home-title">Bienvenido a la Sala de Juegos</h1>
-        <p class="home-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor ligula eget urna lacinia malesuada. Integer sit amet posuere odio.</p>
-        <button class="home-button">Empezar a jugar</button>
+        <p class="home-description">¡Bienvenido a la Sala de Juegos, donde la diversión nunca termina! Disfruta de juegos 
+            que pondrán a prueba tu destreza, conocimiento y habilidades estratégicas. En nuestra sala encontrarás clásicos como el Ahorcado, Mayor o Menor, Preguntados, y muchos más. 
+            Prepárate para vivir momentos inolvidables y comparte la emoción con amigos y familiares. ¿Estás listo para empezar?</p>
+        <br>
+        <div class="cards-container">
+            <!-- Tarjeta 1 -->
+            <div class = "card">
+                <img src="https://yanethcast.neocities.org/juegodelahorcado/img/ahorcado_0.png" alt="" class="img-game">
+                <div class="card-content">
+                  <h2>
+                    Ahorcado
+                  </h2>
+                  <p>
+                    Un juego clásico de adivinanzas donde los jugadores intentan adivinar una palabra oculta antes de que se complete el dibujo de un ahorcado.
+                    Cada intento fallido agrega una parte al dibujo del ahorcado, y los jugadores tienen un número limitado de oportunidades para adivinar la palabra.
+                  </p>
+                  <a *ngIf="estaLogeado" routerLink="/ahorcado" class="button">
+                    Jugar ahora 
+                  </a>
+                  <a *ngIf="!estaLogeado" class="button" (click)="openLoginPopup()" style="width: 110px;">
+                    Iniciar Sesion
+                  </a>
+                </div>
+              </div>
+
+            <!-- Tarjeta 2 -->
+            <div class = "card">
+                <img src="https://static.vecteezy.com/system/resources/previews/009/877/656/original/pixel-art-card-ace-of-hearts-playing-card-icon-for-8bit-game-on-white-background-vector.jpg" alt="" class="img-game">
+                <div class="card-content">
+                  <h2>
+                    Mayor o Menor
+                  </h2>
+                  <p>
+                    Un juego de cartas donde los jugadores deben adivinar si la siguiente carta será de un valor mayor o menor que la carta mostrada. 
+                    Los jugadores pueden elegir si desean apostar y ganan o pierden puntos según su elección y el resultado de la carta siguiente.
+                  </p>
+                  <a *ngIf="estaLogeado" routerLink="/mayor-o-menor" class="button">
+                    Jugar ahora 
+                  </a>
+                  <a *ngIf="!estaLogeado" class="button" (click)="openLoginPopup()" style="width: 110px;">
+                    Iniciar Sesion
+                  </a>
+                </div>
+              </div>
+
+            <!-- Tarjeta 3 -->
+            <div class = "card">
+                <img src="https://m.media-amazon.com/images/I/61Dl8pt7btL.png" alt="" class="img-game">
+                <div class="card-content">
+                  <h2>
+                    Preguntados
+                  </h2>
+                  <p>
+                    Un juego de preguntas y respuestas donde los jugadores compiten para responder correctamente a una variedad de preguntas en categorías como historia, ciencia, entretenimiento y cultura general.
+                    El objetivo es acumular la mayor cantidad de puntos respondiendo correctamente a las preguntas en el menor tiempo posible.
+                  </p>
+                  <a *ngIf="estaLogeado" routerLink="/preguntados" class="button">
+                    Jugar ahora 
+                  </a>
+                  <a *ngIf="!estaLogeado" class="button" (click)="openLoginPopup()" style="width: 110px;">
+                    Iniciar Sesion
+                  </a>
+                </div>
+              </div>
+
+            <!-- Tarjeta 4 -->
+            <div class = "card">
+                <img src="https://thumb.ac-illust.com/0c/0c45d4aa4fd52ff66ff3ad12e025037a_t.jpeg" alt="" class="img-game">
+                <div class="card-content">
+                  <h2>
+                    Juego 4
+                  </h2>
+                  <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt exercitationem iste, voluptatum, quia explicabo laboriosam rem adipisci voluptates cumque, veritatis atque nostrum corrupti ipsa asperiores harum? Dicta odio aut hic.
+                  </p>
+                  <a *ngIf="estaLogeado" routerLink="/juego4" class="button">
+                    Jugar ahora 
+                  </a>
+                  <a *ngIf="!estaLogeado" class="button" (click)="openLoginPopup()" style="width: 110px;">
+                    Iniciar Sesion
+                  </a>
+                </div>
+              </div>
+        </div>  
     </div>
 </div>
+
+<app-login *ngIf="mostrarLoginPopup"></app-login>

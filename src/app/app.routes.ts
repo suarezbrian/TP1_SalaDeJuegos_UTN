@@ -20,6 +20,18 @@ export const routes: Routes = [
         loadComponent:()=> import('./about/about.component').then(c => c.AboutComponent)
     },
     {
+        path: 'ahorcado',
+        loadComponent:()=> import('./juegos/ahorcado/ahorcado.component').then(c => c.AhorcadoComponent)
+    },
+    {
+        path: 'mayor-o-menor',
+        loadComponent:()=> import('./juegos/mayor-omenor/mayor-omenor.component').then(c => c.MayorOMenorComponent)
+    },
+    {
+        path: 'preguntados',
+        loadComponent:()=> import('./juegos/preguntados/preguntados.component').then(c => c.PreguntadosComponent)
+    },
+    {
         path: 'error',
         loadComponent:()=> import('./error/error.component').then(c => c.ErrorComponent)
     },

@@ -18,6 +18,7 @@ import { AuthService } from '../services/auth.service';
 export class HeaderComponent {
   mostrarLoginPopup: boolean = false;
   mostrarRegistroPopup: boolean = false;
+  overlayForm: boolean = false;
   estaLogeado: boolean = false;
   msjError: string = "";
   msjSucces: string = "";
@@ -34,11 +35,12 @@ export class HeaderComponent {
     this.sharedService.estaLogeado$.subscribe(estaLogeado => {
       this.estaLogeado = estaLogeado;
     });  
+
     this.subscription = this.sharedService.usuarioLogeado$.subscribe(usuario => {
       this.usuarioLogeado = usuario;
-      console.log(this.usuarioLogeado);
+      this.datosUsuario = [];
       this.usuarioLogeado?this.datosUsuario.push(this.usuarioLogeado):this.datosUsuario = [];
-
+      
       if(this.datosUsuario.length > 0){
         this.nombreUsuario = this.datosUsuario[0].usuario;
       }
@@ -54,14 +56,16 @@ export class HeaderComponent {
 
   openLoginPopup() {
     this.sharedService.formAbierto = true;
-    this.mostrarLoginPopup = true;
-    this.mostrarRegistroPopup = false;
+    this.sharedService.formRegistroAbierto = false;
+    this.mostrarRegistroPopup = this.sharedService.formRegistroAbierto;
+    this.mostrarLoginPopup =   this.sharedService.formAbierto;
   }
 
   openRegistroPopup(){
-    this.sharedService.formAbierto = true;
-    this.mostrarRegistroPopup = true;
-    this.mostrarLoginPopup = false;
+    this.sharedService.formRegistroAbierto = true;
+    this.sharedService.formAbierto = false;
+    this.mostrarRegistroPopup = this.sharedService.formRegistroAbierto;
+    this.mostrarLoginPopup =   this.sharedService.formAbierto;
   }
 
   cerrarSesion(){

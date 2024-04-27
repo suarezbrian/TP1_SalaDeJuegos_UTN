@@ -1,6 +1,11 @@
-<div class="panel-menu-container">
+<div *ngIf="estaLogeado" class="panel-menu-container">
+    <h3>{{ nombreUsuario }}</h3>
     <ul class="menu">
-        <li><a src="../../assets/home.png" routerLink="/home">Inicio</a></li>
+        <li><a routerLink="/home">Inicio</a></li>
         <li><a routerLink="/about">Sobre Mi</a></li>
-    </ul>
+        <li><a routerLink="/home">Juegos</a></li>
+        <li><a routerLink="/about">Tabla de clasificación</a></li>    
+        <li><a routerLink="/about">Encuesta</a></li> 
+        <li><a routerLink="/about">Chat</a></li>
+    </ul>     
 </div>

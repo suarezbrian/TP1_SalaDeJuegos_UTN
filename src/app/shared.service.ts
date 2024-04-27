@@ -20,6 +20,17 @@ export class SharedService {
     this._formAbierto.next(valor);
   }
 
+  private _formRegistroAbierto: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  formRegistroAbierto$ = this._formRegistroAbierto.asObservable();
+
+  get formRegistroAbierto(): boolean {
+    return this._formRegistroAbierto.getValue();
+  }
+
+  set formRegistroAbierto(valor: boolean) {
+    this._formRegistroAbierto.next(valor);
+  }
+
   private _estaLogeado: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   estaLogeado$ = this._estaLogeado.asObservable();
 
