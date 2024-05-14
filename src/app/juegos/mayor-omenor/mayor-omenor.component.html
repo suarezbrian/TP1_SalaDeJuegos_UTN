@@ -1,2 +1,11 @@
 <app-panel-menu></app-panel-menu>
-<p>mayor-omenor works!</p>
+<body>
+    <h1>Juego de Cartas: Mayor o Menor</h1>
+    <div>
+        <img class="card" [src]="currentCardImageUrl" alt="Carta">
+    </div>
+    <div class="controls">
+        <button class="btn btn-primary" (click)="inicio('mayor')">Mayor</button>
+        <button class="btn btn-secondary" (click)="inicio('menor')">Menor</button>
+    </div>
+</body>

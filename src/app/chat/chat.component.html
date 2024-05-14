@@ -1,0 +1,30 @@
+<section class="msger">
+    <header class="msger-header">
+        <div class="msger-header-title">
+            <i class="fas fa-comment-alt"></i> Chat
+        </div>
+        <div class="msger-header-options">
+            <span><i class="fas fa-cog"></i></span>
+        </div>
+    </header>
+
+    <main class="msger-chat">
+        <ng-container *ngFor="let message of messages">
+            <div class="msg" [ngClass]="message.type === 'left' ? 'left-msg' : 'right-msg'">
+                <div class="msg-bubble">
+                    <div class="msg-info">
+                        <span class="msg-info-name">{{ message.nombreUsuario }}</span>
+                        <span class="msg-info-time">{{ message.fecha | date:'short' }}</span>
+                    </div>
+                    <div class="msg-text">{{ message.text }}</div>
+                </div>
+            </div>
+        </ng-container>
+    </main>
+
+    <form class="msger-inputarea" (ngSubmit)="enviarMensaje()">
+        <input type="text" class="msger-input" name="chat" placeholder="Escribe un mensaje..." [(ngModel)]="message">
+        <button type="submit" class="msger-send-btn">Send</button>
+    </form>
+</section>
+  

@@ -1,2 +1,36 @@
 <app-panel-menu></app-panel-menu>
-<p>ahorcado works!</p>
+<div class="main-container">
+    <h1 class="titulo">Juego del ahorcado</h1>
+    <h1 id="msg-final">{{ mensajeFinal }}</h1>
+    <h3 id="acierto">{{ mensajeAcierto }}</h3>
+    <div class="flex-row no-wrap">     
+      <picture class="img-ahorcado">
+            <ng-container *ngFor="let i of [6, 5, 4, 3, 2, 1, 0]">
+                <img *ngIf="intentos === i" src="../../../assets/ahorcado/ahorcado_{{i}}.png" alt="" [id]="'image' + i" class="fade-in">
+            </ng-container>  
+            <div class="palabra" id="palabra">
+                <span *ngFor="let char of oculta">{{ char }}</span>
+            </div>    
+       </picture>
+    </div>
+    <div class="flex-row" id="turnos">
+      <div class="col">
+        <h3>Intentos restantes: <span id="intentos">{{ intentos }}</span></h3>
+      </div>
+      <div class="col">
+        <button (click)="inicio()" id="reset">{{ botonReset }}</button>
+        <button (click)="mostrarPista()" id="pista">¡Dame una pista!</button>
+        <span id="hueco-pista">{{ pistaTexto }}</span>
+      </div>
+    </div>
+    <div class="flex-row">
+      <div class="col">
+        <div class="flex-row" id="abcdario">
+          <button *ngFor="let letra of abecedario" [value]="letra" (click)="intento(letra)" class="letra" [id]="letra" [disabled]="letrasUsadas.has(letra)">
+            {{ letra }}
+          </button>
+        </div>
+      </div>
+      <div class="col"></div>
+    </div>
+  </div>
