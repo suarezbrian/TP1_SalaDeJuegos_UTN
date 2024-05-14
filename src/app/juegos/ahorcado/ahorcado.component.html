@@ -1,8 +1,9 @@
 <app-panel-menu></app-panel-menu>
+<br><br><br>
 <div class="main-container">
     <h1 class="titulo">Juego del ahorcado</h1>
-    <h1 id="msg-final">{{ mensajeFinal }}</h1>
-    <h3 id="acierto">{{ mensajeAcierto }}</h3>
+    <h1 *ngIf="juegoTerminado" class="mnsg-final">{{ mensajeFinal }}</h1>
+    <h3 *ngIf="!juegoTerminado" class="mnsg-acierto">{{ mensajeAcierto }}</h3>
     <div class="flex-row no-wrap">     
       <picture class="img-ahorcado">
             <ng-container *ngFor="let i of [6, 5, 4, 3, 2, 1, 0]">
@@ -15,22 +16,24 @@
     </div>
     <div class="flex-row" id="turnos">
       <div class="col">
-        <h3>Intentos restantes: <span id="intentos">{{ intentos }}</span></h3>
+        <h3 class="intentos">Intentos restantes: <span class="intentos">{{ intentos }}</span></h3>
       </div>
+     
       <div class="col">
-        <button (click)="inicio()" id="reset">{{ botonReset }}</button>
-        <button (click)="mostrarPista()" id="pista">¡Dame una pista!</button>
-        <span id="hueco-pista">{{ pistaTexto }}</span>
+        <br><br><br>
+        <button (click)="inicio()" class="reset">{{ botonReset }}</button>
+        <button *ngIf="!juegoTerminado" (click)="mostrarPista()" >¡Dame una pista!</button>
+        <span class="pista">{{ pistaTexto }}</span>
       </div>
     </div>
     <div class="flex-row">
       <div class="col">
-        <div class="flex-row" id="abcdario">
+        <div *ngIf="!juegoTerminado" class="flex-row" id="abcdario">
           <button *ngFor="let letra of abecedario" [value]="letra" (click)="intento(letra)" class="letra" [id]="letra" [disabled]="letrasUsadas.has(letra)">
             {{ letra }}
           </button>
         </div>
       </div>
-      <div class="col"></div>
+    <div class="col"></div>
     </div>
   </div>

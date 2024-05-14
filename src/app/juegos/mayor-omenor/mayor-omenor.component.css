@@ -4,6 +4,7 @@ body {
     background-color: #f0f0f0;
     padding: 50px;
     padding-top: 100px;
+    font-family: 'Press Start 2P', cursive;
 }
 .card {
     width: 150px;
@@ -29,4 +30,53 @@ body {
     background-color: #6c757d;
     color: white;
     border: none;
+}
+
+.btn-reset{
+    background-color: #834a4a;
+    color: white;
+    border: none;
+}
+
+.game-container {
+    display: flex;    
+    flex-direction: column;
+}
+  
+.game-info {
+    margin-right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+
+}
+
+.vidas {
+    display: flex;
+}
+
+.heart-icon {
+    width: 60px;
+    height: 32px;
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.nombreUsuario{
+    font-size: 1.5rem;
+}
+
+.vidaTitulo{
+    font-size: 1.5rem;
+}
+
+.puntos{
+    font-size: 1.5rem;
+}
+
+.msg-final{
+    font-size: 2rem;
 }

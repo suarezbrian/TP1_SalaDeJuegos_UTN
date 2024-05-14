@@ -1,12 +1,15 @@
 import { Component, inject } from '@angular/core';
 import { PanelMenuComponent } from '../../panel-menu/panel-menu.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Subscription } from 'rxjs';
+import { Subscription, firstValueFrom } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { SharedService } from '../../shared.service';
+import { Usuario } from '../../interfaces/usuario';
 
 @Component({
   selector: 'app-mayor-omenor',
   standalone: true,
-  imports: [PanelMenuComponent, HttpClientModule],
+  imports: [PanelMenuComponent, HttpClientModule, CommonModule],
   templateUrl: './mayor-omenor.component.html',
   styleUrl: './mayor-omenor.component.css'
 })
@@ -16,110 +19,134 @@ export class MayorOMenorComponent {
   cartaAnterior: string = "";
   cartaActual: string = "";
   valorJugador: string = "";
-  private subscription: Subscription | undefined;
+  nombreUsuario: string = "";
+  subscription!: Subscription;
+  usuarioLogeado: Usuario | null = null;
+  datosUsuario: Usuario[] = [];
+  puntos: number = 0;
+  intentos: number = 3;
+  intentosPerdidos: number =0;
+  mensajeFinal: string = "";
+  botonReset: string = "";
+  juegoTerminado: boolean = false;;   
+
+  constructor(
+    private http: HttpClient,
+    private sharedService: SharedService) { }
 
   ngOnInit(){
-    this.obtenerCarta();
+    this.obtenerNuevaBaraja();
+
+    this.subscription = this.sharedService.usuarioLogeado$.subscribe(usuario => {
+      this.usuarioLogeado = usuario;
+      this.datosUsuario = [];
+      this.usuarioLogeado?this.datosUsuario.push(this.usuarioLogeado):this.datosUsuario = [];
+      
+      if(this.datosUsuario.length > 0){
+        this.nombreUsuario = this.datosUsuario[0].usuario;
+      }
+      
+    });
   }
 
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
+  async obtenerNuevaBaraja() {
+    const response = await firstValueFrom(this.http.get<any>('https://deckofcardsapi.com/api/deck/new'));
+    this.deckId = response.deck_id;
+    await this.mezclarBaraja();
+    await this.dibujarCarta();
+  }
+
+  async dibujarCarta() {
+    if (this.deckId) {
+      const response = await firstValueFrom(this.http.get<any>(`https://deckofcardsapi.com/api/deck/${this.deckId}/draw/?count=1`));
+      this.cartaAnterior = this.cartaActual;   
+      this.currentCardImageUrl = response.cards[0].image;
+      this.cartaActual = response.cards[0].code;
+    } else {
+      console.error('No hay ID de baraja disponible');
     }
   }
 
-  constructor(private http: HttpClient) { }
-
-  dibujarCarta() {
-    if (this.deckId) {
-      this.subscription = this.http.get<any>(`https://deckofcardsapi.com/api/deck/${this.deckId}/draw/?count=1`)
-        .subscribe({
-          next: response => {  
-
-            this.cartaAnterior = this.cartaActual;   
-            this.currentCardImageUrl = response.cards[0].image;
-            this.cartaActual = response.cards[0].code;   
-            
-            this.contarPuntos();
-
-          },
-          error: error => {
-            console.error('Error al dibujar la carta:', error);
-          }
-        });
-    } else {
-      console.error('No hay ID de baraja disponible');
-    } 
-    
+  async mezclarBaraja() {
+    await firstValueFrom(this.http.get<any>(`https://www.deckofcardsapi.com/api/deck/${this.deckId}/shuffle/`));
   }
 
-  mesclar(){
-    this.http.get<any>(`https://www.deckofcardsapi.com/api/deck/${this.deckId}/shuffle/`)
-      .subscribe({
-        next: response => {
-          console.log('La baraja ha sido mezclada nuevamente:', response);          
-        },
-        error: error => {
-          console.error('Error al volver a mezclar la baraja:', error);
-        }
-      });
-  }
-
-
-  obtenerCarta(){
-    if (!this.deckId) {     
-      this.subscription = this.http.get<any>('https://deckofcardsapi.com/api/deck/new')
-        .subscribe({
-          next: response => {
-            this.deckId = response.deck_id;
-            this.dibujarCarta();
-            this.mesclar(); 
-          },
-          error: error => {
-            console.error('Error al obtener la carta:', error);
-          }
-        });
+  async obtenerCarta() {
+    if (!this.deckId) {
+      await this.obtenerNuevaBaraja();
     } else {
-      this.dibujarCarta();
-    } 
+      await this.dibujarCarta();
+      this.contarPuntos();
+    }
   }
 
   valorCarta(carta: string): number {
-    const valor = carta.substring(0, carta.length - 1); 
+    const valor = carta.substring(0, carta.length - 1);
     switch (valor) {
-        case 'A':           
-            return 11; 
-        case 'J':
-        case 'Q':
-        case 'K':
-            return 10; 
-        default:
-            return parseInt(valor);
+      case 'A':
+        return 11;
+      case 'J':
+      case 'Q':
+      case 'K':
+        return 10;
+      default:
+        return parseInt(valor);
     }
   }
 
-  inicio(valor:string){
+  async inicio(valor: string) {
     this.valorJugador = valor;
-    this.obtenerCarta();
+    await this.obtenerCarta();
   }
 
-  contarPuntos(){
-    if(this.valorJugador === "mayor"){ 
-    
-      if(this.valorCarta(this.cartaActual) > this.valorCarta(this.cartaAnterior)){
-        console.log("ganaste"); //+1
-      }else{
-        console.log("perdiste"); //-1 vida
-      }
+  contarPuntos() {
+    console.log(this.cartaAnterior);
+    if (this.cartaAnterior === ""){
+       return;
     }
 
-    if(this.valorJugador === "menor"){
-      if(this.valorCarta(this.cartaActual) < this.valorCarta(this.cartaAnterior)){
-        console.log("ganaste");//+1
-      }else{
-        console.log("perdiste");//-1 vida
+    const valorActual = this.valorCarta(this.cartaActual);
+    const valorAnterior = this.valorCarta(this.cartaAnterior);
+
+    if (this.valorJugador === "mayor") {
+      if (valorActual > valorAnterior) {
+        this.puntos++;
+      } else {
+        this.intentosPerdidos++;
+        this.intentos--;
+        this.compruebaFin();
+      }
+    } else if (this.valorJugador === "menor") {
+      if (valorActual < valorAnterior) {
+        this.puntos++;
+      } else {
+        this.intentosPerdidos++;
+        this.intentos--;
+        this.compruebaFin();
       }
     }
+  }
+
+  compruebaFin() {
+    if (this.intentosPerdidos === 3) {
+      this.mensajeFinal = 'Partida Terminada!';
+      this.botonReset = 'Reset';
+      this.juegoTerminado = true;  
+      console.log("juego terminado"); 
+    } else if (this.intentosPerdidos < 3) {
+      return;
+    }
+  }
+
+  reset(){
+    this.puntos = 0;
+    this.intentos = 3;
+    this.intentosPerdidos = 0;
+    this.mensajeFinal = "";
+    this.botonReset = "";
+    this.juegoTerminado = false;
+    this.cartaAnterior = "";
+    this.obtenerNuevaBaraja();
   }
 
 }

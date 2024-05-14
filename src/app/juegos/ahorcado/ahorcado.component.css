@@ -4,7 +4,8 @@
     align-items: center;
     padding-top: 100px;
     margin-left: 450px;
-    width: 50%;
+    width: 70%;
+    font-family: 'Press Start 2P', cursive;
   }
   
   .titulo {
@@ -24,7 +25,7 @@
   }
   
   .palabra {
-    font-size: 4.5em;
+    font-size: 2.5em;
     letter-spacing: 0.1em;
   }
   
@@ -32,42 +33,25 @@
     margin: 5px;
     padding: 10px;
   }
-  
-  .acierto {
-    transition: color 0.8s;
+
+  .pista{
+    flex-wrap: nowrap;
+  }
+
+  .intentos .mnsg-final .mnsg-acierto{
+    font-size: 1.5rem;
+  }
+
+  .mnsg-final{
+    font-size: 2.5rem;
+  }
+
+  .mnsg-acierto{
+    font-size: 2.5rem;
   }
   
-  .acierto.verde {
-    color: green;
-  }
+
   
-  .acierto.rojo {
-    color: red;
-  }
-  
-  .fade-in {
-    animation: fadeIn 1s;
-  }
-  
-  .zoom-in {
-    animation: zoomIn 1s;
-  }
-  
-  .encuadre {
-    border: 2px solid green;
-    padding: 10px;
-    border-radius: 10px;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  @keyframes zoomIn {
-    from { transform: scale(0.5); }
-    to { transform: scale(1); }
-  }
 
 
   

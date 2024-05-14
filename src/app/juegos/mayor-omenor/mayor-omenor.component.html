@@ -1,11 +1,29 @@
 <app-panel-menu></app-panel-menu>
 <body>
     <h1>Juego de Cartas: Mayor o Menor</h1>
-    <div>
+    <span class="msg-final">{{mensajeFinal}}</span>
+    <div class="game-container">
+      <div class="game-area">
         <img class="card" [src]="currentCardImageUrl" alt="Carta">
+        <div class="controls">
+          <button class="btn btn-primary" *ngIf="!juegoTerminado" (click)="inicio('mayor')">Mayor</button>
+          <button class="btn btn-secondary" *ngIf="!juegoTerminado" (click)="inicio('menor')">Menor</button>
+          <button  class="btn btn-reset" *ngIf="juegoTerminado" (click)="reset()">{{botonReset}}</button>
+        </div>
+      </div>
+
+      <div class="game-info">
+        <span class="nombreUsuario">Nombre: {{ nombreUsuario }}</span>
+      
+        <div class="vidas">
+            <span class="vidaTitulo">Vidas:</span>
+            <img *ngFor="let vida of [2, 1, 0]" 
+            [src]="intentosPerdidos > vida ? '../../../assets/mayor-o-menor/corazon-negro.png' : '../../../assets/mayor-o-menor/corazon.png'" 
+            alt="Corazón" 
+            class="heart-icon">
+        </div>
+        <span class="puntos">Puntos: {{  puntos }}</span>
+        <span class="puntos">Mejor puntuación: {{  "1337" }}</span>
+      </div>
     </div>
-    <div class="controls">
-        <button class="btn btn-primary" (click)="inicio('mayor')">Mayor</button>
-        <button class="btn btn-secondary" (click)="inicio('menor')">Menor</button>
-    </div>
-</body>
+  </body>

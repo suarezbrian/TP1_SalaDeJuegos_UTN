@@ -5,11 +5,12 @@ import { Subscription } from 'rxjs';
 import { Usuario } from '../interfaces/usuario';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { PanelMenuComponent } from '../panel-menu/panel-menu.component';
 
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, PanelMenuComponent],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css'
 })
