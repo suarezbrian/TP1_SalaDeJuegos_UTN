@@ -8,11 +8,6 @@
     font-family: 'Press Start 2P', cursive;
   }
   
-  .titulo {
-    font-size: 2em;
-    margin: 20px 0;
-  }
-  
   .flex-row {
     display: flex;
     flex-direction: row;

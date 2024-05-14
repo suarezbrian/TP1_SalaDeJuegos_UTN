@@ -1,14 +1,11 @@
 <app-panel-menu></app-panel-menu>
-<br><br><br>
+<br><br>
 <div class="main-container">
-    <h1 class="titulo">Juego del ahorcado</h1>
+    <h1>Juego del ahorcado</h1>
     <h1 *ngIf="juegoTerminado" class="mnsg-final">{{ mensajeFinal }}</h1>
-    <h3 *ngIf="!juegoTerminado" class="mnsg-acierto">{{ mensajeAcierto }}</h3>
     <div class="flex-row no-wrap">     
       <picture class="img-ahorcado">
-            <ng-container *ngFor="let i of [6, 5, 4, 3, 2, 1, 0]">
-                <img *ngIf="intentos === i" src="../../../assets/ahorcado/ahorcado_{{i}}.png" alt="" [id]="'image' + i" class="fade-in">
-            </ng-container>  
+            <img [src]="obtenerImagenSrc(intentos)" alt="Ahorcado" class="fade-in"> 
             <div class="palabra" id="palabra">
                 <span *ngFor="let char of oculta">{{ char }}</span>
             </div>    

@@ -29,6 +29,7 @@ export class AhorcadoComponent {
     ["helado", "Postre frío y dulce"], ["estadio", "Lugar donde se celebran eventos deportivos"], ["casa", "Lugar donde vive una familia"],
     ["murciélago", "Mamífero que vuela"], ["internet", "Red global de comunicación"], ["escalera", "Elemento para subir o bajar entre niveles"]
   ];
+
   palabraOculta: string = "";
   rand: number = 0;
   oculta: string[] = [];
@@ -77,10 +78,8 @@ export class AhorcadoComponent {
       for (let i = 0; i < this.palabraOculta.length; i++) {
         if (this.palabraOculta[i] === letra) this.oculta[i] = letra;
       }
-      this.mensajeAcierto = '¡Bien!';
     } else {
       this.intentos--;
-      this.mensajeAcierto = '¡Fallo!';
     }
     this.compruebaFin();
   }
@@ -92,11 +91,11 @@ export class AhorcadoComponent {
   compruebaFin() {
     if (this.oculta.indexOf('_') === -1) {
       this.mensajeFinal = '¡Felicidades Ganaste!';
-      this.botonReset = 'Empezar';
+      this.botonReset = 'Reset';
       this.juegoTerminado = true;
     } else if (this.intentos === 0) {
       this.mensajeFinal = 'Perdiste!';
-      this.botonReset = 'Empezar';
+      this.botonReset = 'Reset';
       this.juegoTerminado = true;    
     }
   }
@@ -112,5 +111,27 @@ export class AhorcadoComponent {
     this.pistaTexto = '';
     this.botonReset = 'Elegir otra palabra';
     this.juegoTerminado = false;  
+  }
+
+  obtenerImagenSrc(intentos: number): string {
+    const imagenes = [
+        "../../../assets/ahorcado/ahorcado_0.png",
+        "../../../assets/ahorcado/ahorcado_1.png",
+        "../../../assets/ahorcado/ahorcado_2.png",
+        "../../../assets/ahorcado/ahorcado_3.png",
+        "../../../assets/ahorcado/ahorcado_4.png",
+        "../../../assets/ahorcado/ahorcado_5.png",
+        "../../../assets/ahorcado/ahorcado_6.png"
+    ];
+
+    if (intentos >= imagenes.length) {
+        return imagenes[imagenes.length - 1];
+    }
+
+    if (intentos < 0) {
+        return '';
+    }
+
+    return imagenes[intentos];
   }
 }
