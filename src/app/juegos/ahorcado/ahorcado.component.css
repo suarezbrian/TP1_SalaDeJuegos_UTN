@@ -6,47 +6,54 @@
     margin-left: 450px;
     width: 70%;
     font-family: 'Press Start 2P', cursive;
-  }
+}
   
-  .flex-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-  }
-  
-  .no-wrap {
-    flex-wrap: nowrap;
-  }
-  
-  .palabra {
-    font-size: 2.5em;
-    letter-spacing: 0.1em;
-  }
-  
-  button {
-    margin: 5px;
-    padding: 10px;
-  }
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
 
-  .pista{
-    flex-wrap: nowrap;
-  }
+.no-wrap {
+  flex-wrap: nowrap;
+}
 
-  .intentos .mnsg-final .mnsg-acierto{
-    font-size: 1.5rem;
-  }
+.palabra {
+  font-size: 2.5em;
+  letter-spacing: 0.1em;
+}
 
-  .mnsg-final{
-    font-size: 2.5rem;
-  }
+button {
+  margin: 5px;
+  padding: 10px;
+}
 
-  .mnsg-acierto{
-    font-size: 2.5rem;
-  }
+.pista{
+  flex-wrap: nowrap;
+}
+
+.intentos .mnsg-final .mnsg-acierto{
+  font-size: 1.5rem;
+}
+
+.mnsg-final{
+  font-size: 2.5rem;
+}
+
+.mnsg-acierto{
+  font-size: 2.5rem;
+}
+
+.letra-faltante{
+  color: red;
+}
+
+.letra-actuales{
+  color: black;
+}
   
 
-  
 
 
   

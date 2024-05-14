@@ -49,15 +49,12 @@ export class ChatComponent {
     });
 
 
-    this.chatService.obtenerUltimoMensaje().subscribe(mensaje => {
-     
-      if((mensaje?.fecha?.getTime() ?? 0) > this.fecha.getTime()){
-        if(this.nombreUsuario != mensaje?.nombreUsuario){
-        console.log("Servicio :", mensaje);
-        this.messages.push({ text: mensaje?.text,fecha: new Date(),nombreUsuario: mensaje?.nombreUsuario, type: 'left' });
-        this.messages.sort((a, b) => a.timestamp - b.timestamp); 
-        }
-      }
+    this.chatService.obtenerUltimoMensaje().subscribe(mensaje => {    
+      if(this.nombreUsuario != mensaje?.nombreUsuario){
+      console.log("Servicio :", mensaje);
+      this.messages.push({ text: mensaje?.text,fecha: new Date(),nombreUsuario: mensaje?.nombreUsuario, type: 'left' });
+      this.messages.sort((a, b) => a.timestamp - b.timestamp); 
+      }      
     });
       
     

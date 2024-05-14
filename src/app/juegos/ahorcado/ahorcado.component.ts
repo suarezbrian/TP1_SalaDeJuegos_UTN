@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {  Component } from '@angular/core';
 import { PanelMenuComponent } from '../../panel-menu/panel-menu.component';
 import { CommonModule } from '@angular/common';
 
@@ -32,7 +32,7 @@ export class AhorcadoComponent {
 
   palabraOculta: string = "";
   rand: number = 0;
-  oculta: string[] = [];
+  oculta: { letra: string, descubierta: boolean }[] = [];
   hueco: HTMLElement | null = null;
   abecedario: string[] = [];
   letrasUsadas: Set<string> = new Set();
@@ -55,7 +55,7 @@ export class AhorcadoComponent {
   }
 
   pintarGuiones(num: number) {
-    this.oculta = Array(num).fill('_');
+    this.oculta = Array(num).fill({ letra: '_', descubierta: false });
   }
 
   generaABC(a: string, z: string) {
@@ -67,7 +67,6 @@ export class AhorcadoComponent {
   }
 
   intento(letra: string) {
-
     if (this.juegoTerminado) {
       this.inicio();
       return;
@@ -76,7 +75,7 @@ export class AhorcadoComponent {
     this.letrasUsadas.add(letra);
     if (this.palabraOculta.indexOf(letra) !== -1) {
       for (let i = 0; i < this.palabraOculta.length; i++) {
-        if (this.palabraOculta[i] === letra) this.oculta[i] = letra;
+        if (this.palabraOculta[i] === letra) this.oculta[i] = { letra, descubierta: true };
       }
     } else {
       this.intentos--;
@@ -89,14 +88,15 @@ export class AhorcadoComponent {
   }
 
   compruebaFin() {
-    if (this.oculta.indexOf('_') === -1) {
+    if (this.oculta.every(item => item.descubierta)) {
       this.mensajeFinal = '¡Felicidades Ganaste!';
       this.botonReset = 'Reset';
       this.juegoTerminado = true;
     } else if (this.intentos === 0) {
       this.mensajeFinal = 'Perdiste!';
       this.botonReset = 'Reset';
-      this.juegoTerminado = true;    
+      this.juegoTerminado = true;
+      this.mostrarPalabra();
     }
   }
 
@@ -115,23 +115,34 @@ export class AhorcadoComponent {
 
   obtenerImagenSrc(intentos: number): string {
     const imagenes = [
-        "../../../assets/ahorcado/ahorcado_0.png",
-        "../../../assets/ahorcado/ahorcado_1.png",
-        "../../../assets/ahorcado/ahorcado_2.png",
-        "../../../assets/ahorcado/ahorcado_3.png",
-        "../../../assets/ahorcado/ahorcado_4.png",
-        "../../../assets/ahorcado/ahorcado_5.png",
-        "../../../assets/ahorcado/ahorcado_6.png"
+      "../../../assets/ahorcado/ahorcado_0.png",
+      "../../../assets/ahorcado/ahorcado_1.png",
+      "../../../assets/ahorcado/ahorcado_2.png",
+      "../../../assets/ahorcado/ahorcado_3.png",
+      "../../../assets/ahorcado/ahorcado_4.png",
+      "../../../assets/ahorcado/ahorcado_5.png",
+      "../../../assets/ahorcado/ahorcado_6.png"
     ];
 
     if (intentos >= imagenes.length) {
-        return imagenes[imagenes.length - 1];
+      return imagenes[imagenes.length - 1];
     }
 
     if (intentos < 0) {
-        return '';
+      return '';
     }
 
     return imagenes[intentos];
+  }
+
+  mostrarPalabra() {
+    if (this.juegoTerminado) {
+      this.oculta = this.oculta.map((item, index) => {
+        if (item.letra === '_') {
+          return { letra: this.palabraOculta[index], descubierta: false };
+        }
+        return item;
+      });
+    }
   }
 }

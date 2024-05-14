@@ -7,7 +7,12 @@
       <picture class="img-ahorcado">
             <img [src]="obtenerImagenSrc(intentos)" alt="Ahorcado" class="fade-in"> 
             <div class="palabra" id="palabra">
-                <span *ngFor="let char of oculta">{{ char }}</span>
+              <ng-container *ngFor="let item of oculta">
+                <span class="letra-actuales" *ngIf="item.descubierta; else elseBlock">{{ item.letra }}</span>
+                <ng-template #elseBlock>
+                  <span class="letra-faltante">{{ item.letra }}</span>
+                </ng-template>
+              </ng-container>
             </div>    
        </picture>
     </div>
