@@ -32,6 +32,10 @@ export const routes: Routes = [
         loadComponent:()=> import('./juegos/mayor-omenor/mayor-omenor.component').then(c => c.MayorOMenorComponent)
     },
     {
+        path: 'busca-minas',
+        loadComponent:()=> import('./juegos/busca-minas/busca-minas.component').then(c => c.BuscaMinasComponent)
+    },
+    {
         path: 'preguntados',
         loadComponent:()=> import('./juegos/preguntados/preguntados.component').then(c => c.PreguntadosComponent)
     },

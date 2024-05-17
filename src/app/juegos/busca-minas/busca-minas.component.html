@@ -1,0 +1,54 @@
+<br><br><br><br><br>
+<app-panel-menu></app-panel-menu>
+<div class="tablero">
+  <div class="timer">
+    <span>Tiempo: {{ minutos }}:{{ segundos | number: '2.0-0' }}</span>
+    <p>Minas: {{ minasRestantes }}</p>
+    <p>Casillas: {{ casillasRestantes }}</p>
+    <p *ngIf="!juegoTerminado"> <img src="../../../assets/busca-minas/flag-mine.png" class="banderaDisp" /> disponibles : {{cantidadBanderas}}</p>
+    <p *ngIf="!activarJuego">Dificultad: <button (click)="cambiarDificultad()">{{ botonDificultad }}</button></p>    
+    <p *ngIf="juegoTerminado"> {{textoFinal}} <button (click)="reset()">{{ botonReset }}</button></p>
+    <br>
+    <button *ngIf="!activarJuego" (click)="empezarJuego()">{{ botonEmpezar }}</button>
+  </div>  
+  <div class="fila" *ngFor="let fila of tablero; let i = index">
+    <ng-container *ngFor="let casilla of fila; let j = index">
+      <ng-container *ngIf="!casilla.revelada; else casillaRevelada">
+        <div class="casilla no-revelada" (click)="seleccionarCasilla(i, j)" (contextmenu)="ponerBandera($event, i, j)">
+          <img *ngIf="casilla.bandera" src="../../../assets/busca-minas/flag-mine.png" alt="Bandera" />        
+        </div>
+      </ng-container>
+      <ng-template #casillaRevelada>
+        <div class="casilla"
+          [ngClass]="{ 'revelada': casilla.revelada, 'mina': casilla.esMina, 'con-bandera': casilla.bandera }"
+          [style.color]="casilla.valor == 0 ? 'white' : (casilla.valor == -1 ? 'red' : 'blue')">
+          {{ casilla.valor }}
+        </div>
+      </ng-template>
+    </ng-container>
+  </div>
+</div>
+<br>
+<p class="tutorial">Tutorial del Juego Busca Minas<br>
+
+  Objetivo: El objetivo del juego es revelar todas las casillas que no contienen minas y colocar banderas en todas las casillas que sí contienen minas.
+  <br><br>
+  Instrucciones:
+  <br>
+  Revelar Casillas:
+  <br>
+  Haz clic izquierdo en una casilla para revelarla.
+  Si la casilla contiene una mina, pierdes el juego.
+  Las casillas vacías mostrarán un número que indica cuántas minas hay en las casillas adyacentes.
+  Colocar y Quitar Banderas:
+  <br>
+  Para colocar una bandera en una casilla que crees que contiene una mina, haz clic derecho en esa casilla.
+  Haz clic derecho nuevamente en una casilla con bandera para quitar la bandera si cambias de opinión.
+  <br><br>
+  Ganar el Juego:
+  <br>
+  Ganarás si colocas banderas en todas las casillas que contienen minas y revelas todas las demás casillas sin revelar.
+  <br><br>
+  Dificultad:
+  <br>
+  Elige la dificultad del juego al comenzar: Fácil, Normal o Difícil, cada una con diferente tamaño de tablero y cantidad de minas.
