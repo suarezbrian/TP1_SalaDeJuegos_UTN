@@ -13,21 +13,21 @@ export class AhorcadoComponent {
   palabras: [string, string][] = [
     ["oceano", "Gran masa de agua salada"], ["biblioteca", "Lugar con muchos libros"], ["astronauta", "Persona que viaja al espacio"],
     ["microscopio", "Instrumento para ver cosas muy pequeñas"], ["telescopio", "Instrumento para observar estrellas"],
-    ["traducción", "Conversión de un texto a otro idioma"], ["volcán", "Montaña con actividad sísmica"], ["electricidad", "Forma de energía"],
-    ["hamburguesa", "Comida rápida con carne"], ["jardín", "Espacio con plantas y flores"], ["granizo", "Precipitación de bolas de hielo"],
-    ["huracán", "Tormenta con vientos muy fuertes"], ["pelota", "Objeto esférico usado en juegos"], ["medicina", "Ciencia de curar enfermedades"],
-    ["nube", "Acumulación de gotas de agua en el cielo"], ["estrella", "Cuerpo celeste que brilla en el cielo"], ["pájaro", "Animal que vuela"],
-    ["periódico", "Publicación de noticias"], ["gimnasio", "Lugar para hacer ejercicio"], ["banco", "Entidad financiera"],
-    ["murciélago", "Mamífero que vuela"], ["carretera", "Vía para vehículos"], ["ventana", "Abertura en la pared para dejar entrar luz"],
+    ["traduccion", "Conversión de un texto a otro idioma"], ["volcan", "Montaña con actividad sísmica"], ["electricidad", "Forma de energía"],
+    ["hamburguesa", "Comida rápida con carne"], ["jardin", "Espacio con plantas y flores"], ["granizo", "Precipitación de bolas de hielo"],
+    ["huracan", "Tormenta con vientos muy fuertes"], ["pelota", "Objeto esférico usado en juegos"], ["medicina", "Ciencia de curar enfermedades"],
+    ["nube", "Acumulación de gotas de agua en el cielo"], ["estrella", "Cuerpo celeste que brilla en el cielo"], ["pajaro", "Animal que vuela"],
+    ["periodico", "Publicación de noticias"], ["gimnasio", "Lugar para hacer ejercicio"], ["banco", "Entidad financiera"],
+    ["carretera", "Vía para vehículos"], ["ventana", "Abertura en la pared para dejar entrar luz"],
     ["puerta", "Abertura que permite el paso"], ["ciudad", "Gran población urbana"], ["desierto", "Lugar seco con poca vegetación"],
     ["mariposa", "Insecto con alas coloridas"], ["pintura", "Arte de representar imágenes con colores"], ["teclado", "Conjunto de teclas de un ordenador"],
-    ["guitarra", "Instrumento musical de cuerda"], ["orquesta", "Conjunto de músicos"], ["teléfono", "Dispositivo para comunicarse a distancia"],
-    ["tren", "Vehículo que circula sobre rieles"], ["avión", "Medio de transporte aéreo"], ["pirámide", "Construcción con base cuadrada y lados triangulares"],
+    ["guitarra", "Instrumento musical de cuerda"], ["orquesta", "Conjunto de músicos"], ["telefono", "Dispositivo para comunicarse a distancia"],
+    ["tren", "Vehículo que circula sobre rieles"], ["avion", "Medio de transporte aéreo"], ["piramide", "Construcción con base cuadrada y lados triangulares"],
     ["parque", "Espacio verde en la ciudad"], ["torre", "Construcción alta y estrecha"], ["museo", "Lugar donde se exhiben obras de arte"],
-    ["río", "Corriente natural de agua"], ["relámpago", "Fenómeno natural antes del trueno"], ["bicicleta", "Vehículo de dos ruedas"],
-    ["caballo", "Animal utilizado para montar"], ["pizarra", "Lugar donde se escribe con tiza"], ["montaña", "Gran elevación natural del terreno"],
+    ["rio", "Corriente natural de agua"], ["relampago", "Fenómeno natural antes del trueno"], ["bicicleta", "Vehículo de dos ruedas"],
+    ["caballo", "Animal utilizado para montar"], ["pizarra", "Lugar donde se escribe con tiza"],
     ["helado", "Postre frío y dulce"], ["estadio", "Lugar donde se celebran eventos deportivos"], ["casa", "Lugar donde vive una familia"],
-    ["murciélago", "Mamífero que vuela"], ["internet", "Red global de comunicación"], ["escalera", "Elemento para subir o bajar entre niveles"]
+    ["murcielago", "Mamífero que vuela"], ["internet", "Red global de comunicación"], ["escalera", "Elemento para subir o bajar entre niveles"]
   ];
 
   palabraOculta: string = "";
