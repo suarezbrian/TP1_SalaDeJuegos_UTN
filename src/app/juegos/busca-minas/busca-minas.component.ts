@@ -133,7 +133,6 @@ export class BuscaMinasComponent {
   }
 
   incrementarCasilla(fila: number, columna: number) {
-    
     const casillas = this.dificultadSeleccionada.casillas;
     if (fila >= 0 && fila < casillas && columna >= 0 && columna < casillas && this.tablero[fila][columna].valor !== -1) {
       this.tablero[fila][columna].valor++;

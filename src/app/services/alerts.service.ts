@@ -50,4 +50,12 @@ export class AlertsService {
   mostrarAlerta(tipo: boolean, mensaje: string, duracion:number) {
     this.configuracionAlerta(tipo, mensaje, duracion);
   }
+
+  mostrarAlertaMidSucces(titulo: string, texto: string){
+    Swal.fire({
+      title: titulo,
+      text: texto,
+      icon: "success"
+    });
+  }
 }

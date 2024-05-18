@@ -1,2 +1,20 @@
 <app-panel-menu></app-panel-menu>
-<p>preguntados works!</p>
+<br><br><br><br><br>
+<div class="preguntas-container">
+    <div *ngIf="preguntaActual < preguntas.length" class="pregunta-card">
+        <img [src]="preguntas[preguntaActual].urlFlag" alt="Flag" class="flag-image">
+        <div class="pregunta-text">
+            <p>Pregunta {{ preguntaActual + 1 }}: ¿Cuál es este país?</p>
+            <p>Respuestas correctas: {{ respuestasCorrectas }} - Respuestas Incorrectas: {{ respuestasIncorrectas }}</p>
+            <ul>
+                <li (click)="seleccionarRespuesta(respuesta)" 
+                *ngFor="let respuesta of preguntas[preguntaActual].todasLasRespuesta"
+                [class.selected]="respuesta === respuestaSeleccionada">
+                {{ respuesta }}
+                </li>           
+            </ul>
+            <button (click)="confirmarRespuesta()" *ngIf="!partidaTerminada">Confirmar</button>
+            <button (click)="reset()" *ngIf="partidaTerminada">Resetear Partida!</button>
+        </div>
+    </div>
+</div>
