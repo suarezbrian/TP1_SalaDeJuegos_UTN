@@ -15,7 +15,6 @@ export const authGuard: CanActivateFn = (route, state) => {
     tap(loggedIn => {
       if (!loggedIn) {
         router.navigate(['/home']);
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:2798219930.
         alertService.mostrarAlerta(false, 'No tienes acceso, por favor inicia sesión', 2000);
       }
     })
