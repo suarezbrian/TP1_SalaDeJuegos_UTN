@@ -226,16 +226,6 @@ export class BuscaMinasComponent {
     if(this.juegoTerminado) return;
     if(this.tablero[fila][columna].bandera) return;
 
-    this.casillasRestantes =   this.calcularCasillasLibres() - 1;
-
-    if(this.casillasRestantes == 0){
-      this.juegoTerminado = true;
-      this.tablero[fila][columna].revelada = true;
-      this.detenerTimer();
-      this.textoFinal = "Has Ganado!";
-      return;
-    }
-
     if(this.tablero[fila][columna].valor == -1){
       this.juegoTerminado = true;
       this.tablero[fila][columna].revelada = true;
@@ -250,6 +240,20 @@ export class BuscaMinasComponent {
       this.tablero[fila][columna].revelada = true;
     }
 
+    this.casillasRestantes =   this.calcularCasillasLibres();
+
+    this.condicionVictoria(fila, columna, true);
+
+  }
+
+  condicionVictoria(fila: number, columna: number, revelar: boolean){
+    if(this.casillasRestantes == 0 && this.cantidadBanderas == 0){
+      this.juegoTerminado = true;
+      this.tablero[fila][columna].revelada = revelar;
+      this.detenerTimer();
+      this.textoFinal = "Has Ganado!";
+      return;
+    }
   }
 
   empezarJuego(){
@@ -292,6 +296,7 @@ export class BuscaMinasComponent {
       if(this.cantidadBanderas <= 0)return;
       this.tablero[fila][columna].bandera = true;
       this.cantidadBanderas--;
+      if(this.cantidadBanderas == 0)this.condicionVictoria(fila, columna, false);
     }
   }
 }
