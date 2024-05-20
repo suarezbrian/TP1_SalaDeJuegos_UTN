@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
     {
@@ -12,27 +13,33 @@ export const routes: Routes = [
     },
     {
         path: 'chat',
-        loadComponent:()=> import('./chat/chat.component').then(c => c.ChatComponent)
+        loadComponent:()=> import('./chat/chat.component').then(c => c.ChatComponent),
+        canActivate: [authGuard]
     },
     {
         path: 'about',
-        loadComponent:()=> import('./about/about.component').then(c => c.AboutComponent)
+        loadComponent:()=> import('./about/about.component').then(c => c.AboutComponent),
+        canActivate: [authGuard]
     },
     {
         path: 'ahorcado',
-        loadComponent:()=> import('./juegos/ahorcado/ahorcado.component').then(c => c.AhorcadoComponent)
+        loadComponent:()=> import('./juegos/ahorcado/ahorcado.component').then(c => c.AhorcadoComponent),
+        canActivate: [authGuard]
     },
     {
         path: 'mayor-o-menor',
-        loadComponent:()=> import('./juegos/mayor-omenor/mayor-omenor.component').then(c => c.MayorOMenorComponent)
+        loadComponent:()=> import('./juegos/mayor-omenor/mayor-omenor.component').then(c => c.MayorOMenorComponent),
+        canActivate: [authGuard]
     },
     {
         path: 'busca-minas',
-        loadComponent:()=> import('./juegos/busca-minas/busca-minas.component').then(c => c.BuscaMinasComponent)
+        loadComponent:()=> import('./juegos/busca-minas/busca-minas.component').then(c => c.BuscaMinasComponent),
+        canActivate: [authGuard]
     },
     {
         path: 'preguntados',
-        loadComponent:()=> import('./juegos/preguntados/preguntados.component').then(c => c.PreguntadosComponent)
+        loadComponent:()=> import('./juegos/preguntados/preguntados.component').then(c => c.PreguntadosComponent),
+        canActivate: [authGuard]
     },
     {
         path: 'error',
